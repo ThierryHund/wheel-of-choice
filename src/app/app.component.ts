@@ -142,27 +142,15 @@ animate() {
   this.choosen = false;
   this.rotation += Math.random() * 10,
   this.element = anime({
-    targets: '.wheel',
-    rotate: {
-      value: this.rotation + 'turn',
-      duration: 1800,
-      easing: 'easeInOutSine'
-    },
-    complete: (anim) => {
-      setTimeout(() => {
-        this.choosen = true;
-      }, 1000 );
-    }
-  });
-
-  this.element = anime({
     targets: '#canvas',
     rotate: {
       value: this.rotation + 'turn',
       duration: 1800,
       easing: 'easeInOutSine'
-    }
+    },
+    complete: (anim) => {this.choosen = true;}
   });
+
 
   const rot = this.rotation - Math.round(this.rotation);
   const turn = ((0.75 - rot) / ( 1 / this.label.length)) - 1;
