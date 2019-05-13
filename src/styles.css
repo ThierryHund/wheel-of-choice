@@ -5,3 +5,8 @@ body{
   margin: 0;
   /* height: 1000px; */
 }
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
