@@ -1,3 +1,13 @@
-<p>Enter a list of item</p>
-<input type="text">
-<input type="text">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div formArrayName="configItems">
+    <h3>configItems</h3> <button (click)="addConfigItems()">Add configItems</button>
+
+    <div *ngFor="let item of configItems.controls; let i=index">
+      <!-- The repeated alias template -->
+      <label>
+        item:
+        <input type="text" [formControlName]="i">
+      </label>
+    </div>
+  </div>
+</form>

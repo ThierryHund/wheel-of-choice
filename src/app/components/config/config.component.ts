@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -8,11 +8,29 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./config.component.css']
 })
 export class ConfigComponent implements OnInit {
-  config = new FormControl([]);
 
-  constructor() { }
+
+  constructor(private fb: FormBuilder) { }
+
+  form = new FormGroup({
+    configItems: new FormArray(
+      [
+        this.fb.control('')
+      ])
+    });
 
   ngOnInit() {
   }
 
+  get configItems() {
+    return this.form.get('configItems') as FormArray;
+  }
+
+  addConfigItems(){
+    this.configItems.push(this.fb.control(''));
+  }
+
+  onSubmit() {
+
+  }
 }
