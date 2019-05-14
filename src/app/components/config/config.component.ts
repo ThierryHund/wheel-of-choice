@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormBuilder, FormGroup } from '@angular/forms';
-
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-config',
@@ -31,6 +30,5 @@ export class ConfigComponent implements OnInit {
   }
 
   onSubmit() {
-
   }
 }
