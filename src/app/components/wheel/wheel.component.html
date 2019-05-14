@@ -1,0 +1,15 @@
+<router-outlet></router-outlet>
+<div class="instruction" >
+    Click to spin the wheel and choose your lunch!
+</div>
+<div class="container">
+  <div class="selector"></div>
+  <canvas class="spin-the-wheel" #myCanvas id="canvas" width="700" height="700"  (click)="animate()"></canvas>
+  <div [ngClass]="{slide_in_fwd_center: choosen}" class="today-lunch">
+    <span>go for</span>
+    <br>
+    <span>{{choice}}</span>
+  </div>
+</div>
+
+
