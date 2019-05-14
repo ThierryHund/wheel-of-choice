@@ -10,13 +10,6 @@ import * as anime from 'animejs';
 import { ConfigService } from '../../services/config.service';
 import { initDomAdapter } from '@angular/platform-browser/src/browser';
 
-const spinning: number =  1000 + Math.random() * 1000;
-
-function randomizeAnimation() {
-  return  {
-    transform: `rotate(${spinning}deg)`,
-  };
-}
 
 @Component({
   selector: 'app-wheel',
@@ -63,13 +56,13 @@ export class WheelComponent implements AfterViewInit, OnInit {
 
     const canvas = this.myCanvas.nativeElement;
     this.ctx = canvas.getContext('2d');
-    const slices   = this.color.length;
+    const slices = this.color.length;
     this.sliceDeg = 360 / slices;
-    let deg      = 0;
-    this.width  = canvas.width; // size
+    let deg = 0;
+    this.width = canvas.width; // size
     this.center = this.width / 2;      // center
 
-    for ( let i = 0; i < slices; i++) {
+    for (let i = 0; i < slices; i++) {
       this.drawSlice(deg, this.color[i]);
       this.drawText(deg + this.sliceDeg / 2, this.label[i]);
       // this.drawBullet(deg);
@@ -77,13 +70,13 @@ export class WheelComponent implements AfterViewInit, OnInit {
     }
 
     this.ctx.beginPath();
-    this.ctx.arc(this.center, this.center, 10, 0 , 2 * Math.PI);
+    this.ctx.arc(this.center, this.center, 10, 0, 2 * Math.PI);
     this.ctx.fill();
     this.ctx.stroke();
 
     this.drawExternalBorder();
 
-    for ( let i = 0; i <= slices; i++) {
+    for (let i = 0; i <= slices; i++) {
       this.drawBullet(this.sliceDeg * i);
     }
     this.tick();
@@ -98,7 +91,7 @@ export class WheelComponent implements AfterViewInit, OnInit {
     document.documentElement.style.setProperty('--vw', `${vw}px`);
   }
 
-  deg2rad( deg ) { return deg * Math.PI / 180; }
+  deg2rad(deg) { return deg * Math.PI / 180; }
 
   drawSlice(deg, color) {
     this.ctx.beginPath();
@@ -129,7 +122,7 @@ export class WheelComponent implements AfterViewInit, OnInit {
     const x = this.center + (((this.width / 2) - 8) * Math.cos(this.deg2rad(deg)));
     const y = this.center + (((this.width / 2) - 8) * Math.sin(this.deg2rad(deg)));
     this.ctx.beginPath();
-    this.ctx.arc(x, y, 5, 0 , 2 * Math.PI);
+    this.ctx.arc(x, y, 5, 0, 2 * Math.PI);
     this.ctx.stroke();
     this.ctx.fill();
   }
@@ -146,36 +139,44 @@ export class WheelComponent implements AfterViewInit, OnInit {
   }
 
   tick() {
-  requestAnimationFrame(() => {
-    this.tick();
-  });
-}
-
-animate() {
-  if(  this.wheelIsTurning === false){
-    this.choice = null;
-    this.choosen = false;
-    this.rotation += Math.random() * 10,
-    this.element = anime({
-      targets: '#canvas',
-      rotate: {
-        value: this.rotation + 'turn',
-        duration: 1800,
-        easing: 'easeInOutSine'
-      },
-      begin: (anim) => {
-        this.wheelIsTurning = true;
-       },
-      complete: (anim) => {
-        this.choosen = true;
-        this.wheelIsTurning = false;
-       }
+    requestAnimationFrame(() => {
+      this.tick();
     });
-    const rot = this.rotation - Math.round(this.rotation);
-    const turn = ((0.75 - rot) / ( 1 / this.label.length)) - 1;
-    const turnIndex = turn > this.label.length ? turn - 7 : turn;
-    this.choice = Math.ceil(turnIndex) === 7 ? this.label[0] : this.label[Math.ceil(turnIndex)];
+  }
+
+  animate() {
+    if (this.wheelIsTurning === false) {
+      this.choice = null;
+      this.choosen = false;
+      this.rotation += Math.random() * 10,
+        this.element = anime({
+          targets: '#canvas',
+          rotate: {
+            value: this.rotation + 'turn',
+            duration: 1800,
+            easing: 'easeInOutSine'
+          },
+          begin: (anim) => {
+            this.wheelIsTurning = true;
+          },
+          complete: (anim) => {
+            this.choosen = true;
+            this.wheelIsTurning = false;
+          }
+        });
+      const rot = this.rotation - Math.round(this.rotation);
+      const turn = ((0.75 - rot) / (1 / this.label.length)) - 1;
+      const turnIndex = turn > this.label.length ? turn - 7 : turn;
+      this.choice = Math.ceil(turnIndex) === 7 ? this.label[0] : this.label[Math.ceil(turnIndex)];
+    }
   }
 }
 
+
+const spinning: number = 1000 + Math.random() * 1000;
+
+function randomizeAnimation() {
+  return {
+    transform: `rotate(${spinning}deg)`,
+  };
 }
