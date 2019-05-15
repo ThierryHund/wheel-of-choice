@@ -5,7 +5,7 @@
     <div *ngFor="let item of configItems.controls; let i=index">
         <mat-form-field appearance="outline">
             <mat-label>Set item {{i + 1}}</mat-label>
-            <input matInput [formControlName]="i">
+            <input matInput [formControlName]="i" #items>
         </mat-form-field>
         <button type="button" *ngIf="i === configItems.controls.length - 1" mat-fab (click)="addConfigItems()">+</button>
         <button type="button" *ngIf="i !== configItems.controls.length - 1" mat-fab (click)="deleteConfigItems(i)">-</button>
