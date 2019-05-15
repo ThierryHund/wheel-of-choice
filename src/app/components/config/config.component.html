@@ -1,13 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div formArrayName="configItems">
-    <h3>configItems</h3> <button (click)="addConfigItems()">Add configItems</button>
+<form class="config" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3>configItems</h3>
 
+  <div formArrayName="configItems">
     <div *ngFor="let item of configItems.controls; let i=index">
-      <!-- The repeated alias template -->
-      <label>
-        item:
-        <input type="text" [formControlName]="i">
-      </label>
+        <mat-form-field appearance="outline">
+            <mat-label>Set item {{i + 1}}</mat-label>
+            <input matInput [formControlName]="i">
+        </mat-form-field>
+        <button type="button" *ngIf="i === configItems.controls.length - 1" mat-fab (click)="addConfigItems()">+</button>
+        <button type="button" *ngIf="i !== configItems.controls.length - 1" mat-fab (click)="deleteConfigItems(i)">-</button>
     </div>
   </div>
+  <button type="submit" [disabled]="!configItems.valid">Submit</button>
 </form>

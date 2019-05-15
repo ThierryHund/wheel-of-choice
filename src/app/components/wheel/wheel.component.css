@@ -75,8 +75,13 @@
   right: 10%; */
   /* left: calc(calc(var(--vw, 1vw) * 100) / 10); */
   transform: translate(-50%, 0);
-
 }
+
+.settings {
+  margin:10px;
+  float: right;
+}
+
 
 
 /* keyframes animation

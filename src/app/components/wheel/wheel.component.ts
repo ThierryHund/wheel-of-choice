@@ -41,11 +41,12 @@ export class WheelComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-
+    this.getConfig();
+    console.log(this.label);
   }
 
-
   ngAfterViewInit() {
+    console.log(this.label);
     window.addEventListener('resize', this.resize, false);
     let vw = 700 * 0.01;
     if (window.innerWidth < 700) {
@@ -56,7 +57,7 @@ export class WheelComponent implements AfterViewInit, OnInit {
 
     const canvas = this.myCanvas.nativeElement;
     this.ctx = canvas.getContext('2d');
-    const slices = this.color.length;
+    const slices = this.label.length;
     this.sliceDeg = 360 / slices;
     let deg = 0;
     this.width = canvas.width; // size

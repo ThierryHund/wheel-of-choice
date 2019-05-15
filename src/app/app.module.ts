@@ -7,6 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConfigComponent } from './components/config/config.component';
 import { WheelComponent } from './components/wheel/wheel.component';
+// import {MatInputModule} from '@angular/material';
+// import {MatFormFieldModule} from '@angular/material/form-field';
+import {MaterialModule} from './material-module';
+
 
 
 @NgModule({
@@ -19,7 +23,10 @@ import { WheelComponent } from './components/wheel/wheel.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // MatInputModule,
+    // MatFormFieldModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
