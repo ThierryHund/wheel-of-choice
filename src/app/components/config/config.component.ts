@@ -1,9 +1,7 @@
-import { element } from 'protractor';
 import { Component, OnInit, ViewChildren, ElementRef, QueryList, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
 import { Router } from '@angular/router';
-import { MatInput } from '@angular/material';
 
 @Component({
   selector: 'app-config',
@@ -13,7 +11,7 @@ import { MatInput } from '@angular/material';
 export class ConfigComponent implements OnInit, AfterViewInit {
 
 
-  constructor(private configService: ConfigService,private fb: FormBuilder, public router: Router, private cd: ChangeDetectorRef) { }
+  constructor(private configService: ConfigService, private fb: FormBuilder, public router: Router, private cd: ChangeDetectorRef) { }
 
   @ViewChildren('items') items: QueryList<ElementRef>;
 
