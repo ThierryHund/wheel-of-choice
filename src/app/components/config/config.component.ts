@@ -25,6 +25,12 @@ export class ConfigComponent implements OnInit, AfterViewInit {
     });
 
   ngOnInit() {
+    const config = this.configService.getConfig();
+    for (let i = 0; i < config.length - 1; i++) {
+      this.addConfigItems();
+    }
+    this.configItems.patchValue(this.configService.getConfig());
+
   }
 
   ngAfterViewInit() {
@@ -50,7 +56,6 @@ export class ConfigComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    console.warn(this.configItems.value);
     this.configService.setConfig(this.configItems.value);
     this.router.navigate(['/']);
   }
